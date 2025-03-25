@@ -14,14 +14,15 @@ import {
 
   const IncomeBlock = ({ incomeList }: { incomeList: IncomeType[] }) => {
     const renderItem: ListRenderItem<IncomeType> = ({ item }) => {
-      let icon = <DollarIcon width={22} height={22} color={Colors.white} />;
+      let icon:React.JSX.Element = <DollarIcon width={22} height={22} color={Colors.white} />;
       if ( item.name === "Freelancing" ) {
         icon = <WalletCardIcon width={22} height={22} color={Colors.white} />;
       } else if (item.name === "Interest") {
         icon = <WalletAddMoneyIcon width={22} height={22} color={Colors.white} />;
       }
 
-      let amount = item.amount.split(".");
+      let amount: String[] = item.amount.split(".");
+
       return (
         <View
           style={{
@@ -51,7 +52,7 @@ import {
             >
               {icon}
             </View>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => console.log("clic")}>
               <Feather name="more-horizontal" size={20} color={Colors.white} />
             </TouchableOpacity>
           </View>
