@@ -4,9 +4,15 @@ import { AntDesign, FontAwesome, SimpleLineIcons } from "@expo/vector-icons";
 import { View } from "react-native";
 import Colors from "@/constants/Colors";
 import { StatusBar } from "expo-status-bar";
+import { useAuthContext } from "../../context/AuthContext";
+import AuthRedirect from "../../components/AuthRedirect";
 
-export default function TabLayout():React.JSX.Element {
+export default function TabLayout(): React.ReactNode {
+  const { isAuthenticated } = useAuthContext();
 
+  if (!isAuthenticated) {
+    return <AuthRedirect />;
+  }
   return (
     <>
       <Tabs
