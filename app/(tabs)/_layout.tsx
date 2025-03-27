@@ -8,9 +8,9 @@ import { useAuthContext } from "../../context/AuthContext";
 import AuthRedirect from "../../components/AuthRedirect";
 
 export default function TabLayout(): React.ReactNode {
-  const { isAuthenticated } = useAuthContext();
-  console.log("isAuthenticated:", isAuthenticated);
-
+  const { isAuthenticated,user } = useAuthContext();
+  //console.log("isAuthenticated:", isAuthenticated);
+  console.log("data:", isAuthenticated);
   if (!isAuthenticated) {
     return <AuthRedirect />;
   }

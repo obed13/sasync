@@ -16,6 +16,8 @@ const LoginScreen: React.FC<IProps> = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { mutate: login, isPending } = useLogin();
+
+
   // tslint:disable-next-line:typedef
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -29,7 +31,7 @@ const LoginScreen: React.FC<IProps> = () => {
     login(
       { username, password },
       {
-        onSuccess: () => {
+        onSuccess: (data) => {
           navigation.replace("(tabs)");
         },
         onError: (error) => {
@@ -63,12 +65,13 @@ const LoginScreen: React.FC<IProps> = () => {
       />
 
       {isPending ? (
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#691a30" />
       ) : (
         <Button
           title="Iniciar sesión"
           onPress={handleLogin}
-          disabled={isPending}
+            disabled={isPending}
+            color="#691a30" 
         />
       )}
     </View>

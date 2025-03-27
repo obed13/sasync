@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 
 
 // tslint:disable-next-line:typedef
-const Header = () => {
+const Header = ({user,logout}) => {
 
   // tslint:disable-next-line:typedef
   const navigation = useNavigation();
@@ -22,14 +22,14 @@ const Header = () => {
             style={styles.userImg}
           />
           <View style={styles.userTxtWrapper}>
-            <Text style={[styles.userText, { fontSize: 12 }]}>Hi, Obed</Text>
+            <Text style={[styles.userText, { fontSize: 12 }]}>Hola, {user.SAS150_ID}</Text>
             <Text style={[styles.userText, { fontSize: 16 }]}>
               E<Text style={styles.boldText}>SAS</Text>
             </Text>
           </View>
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate("transactions")}
+          onPress={() => logout()}
           style={styles.btnWrapper}
         >
           <Text style={styles.btnText}>

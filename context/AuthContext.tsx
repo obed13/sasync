@@ -46,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }):React.JSX.El
   const login = async (data: IAuthResponse) => {
     await AsyncStorage.setItem("userToken", data.token);
     await AsyncStorage.setItem("userInfo", JSON.stringify(data.data));
-    setUser(data.data.SAS150_ID);
+    setUser(data.data);
   };
 
   // tslint:disable-next-line:typedef

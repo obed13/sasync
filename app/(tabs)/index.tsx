@@ -10,8 +10,10 @@ import SpendingBlock from "@/components/SpendingBlock";
 import ExpenseList from "@/data/expenses.json";
 import incomeList from "@/data/income.json";
 import spendingList from "@/data/spending.json";
+import { useAuthContext } from "../../context/AuthContext";
 
-export default function HomeScreen():React.JSX.Element {
+export default function HomeScreen(): React.JSX.Element {
+  const { user,logout } = useAuthContext();
   // tslint:disable-next-line:typedef
   const pieData = [
     {
@@ -35,7 +37,7 @@ export default function HomeScreen():React.JSX.Element {
     <>
       <Stack.Screen
         options={{
-          header: () => <Header />,
+          header: () => <Header user={user} logout={logout} />,
         }}
       />
       <View style={[styles.container, { paddingTop: 50 }]}>
