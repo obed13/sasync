@@ -6,10 +6,11 @@ export interface ILoginCredentials {
 
   export interface IAuthResponse {
     token: string;
-    user: {
+    data: {
       id: string;
       name: string;
       email: string;
+      sas150_id: string;
     };
   }
 

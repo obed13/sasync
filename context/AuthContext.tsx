@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { IAuthResponse } from "../types/auth";
 
 interface IAuthContextType {
-  user: IAuthResponse["user"] | null;
+  user: IAuthResponse["data"] | null;
   isLoading: boolean;
   isAuthenticated: boolean;
   login: (data: IAuthResponse) => Promise<void>;
@@ -17,7 +17,7 @@ const AuthContext:React.Context<IAuthContextType | undefined> = createContext<IA
 export function AuthProvider({ children }: { children: ReactNode }):React.JSX.Element {
 
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<IAuthResponse["user"] | null>(null);
+  const [user, setUser] = useState<IAuthResponse["data"] | null>(null);
   const queryClient: QueryClient = useQueryClient();
 
   useEffect(() => {
@@ -45,8 +45,8 @@ export function AuthProvider({ children }: { children: ReactNode }):React.JSX.El
   // tslint:disable-next-line:typedef
   const login = async (data: IAuthResponse) => {
     await AsyncStorage.setItem("userToken", data.token);
-    await AsyncStorage.setItem("userInfo", JSON.stringify(data.user));
-    setUser(data.user);
+    await AsyncStorage.setItem("userInfo", JSON.stringify(data.data));
+    setUser(data.data.SAS150_ID);
   };
 
   // tslint:disable-next-line:typedef

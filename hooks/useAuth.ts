@@ -17,7 +17,7 @@ async function checkAuth(): Promise<IAuthResponse> {
   const user = JSON.parse(userString);
 
   // aquí podrías validar el token con tu backend si es necesario
-  return { token, user };
+  return { token, data: user };
 }
 
 // tslint:disable-next-line:typedef

@@ -1,9 +1,10 @@
 // screens/LoginScreen.tsx
 import React, { useState } from "react";
-import { View, TextInput, Button, Alert, ActivityIndicator, Text, StyleSheet } from "react-native";
+import { View, TextInput, Button, Alert, ActivityIndicator, Text, StyleSheet, Image } from "react-native";
 import { useLogin } from "../../hooks/useLogin";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../navigation/types";
+import { useNavigation } from "@react-navigation/native";
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, "Login">;
 
@@ -11,15 +12,17 @@ interface IProps {
   navigation: LoginScreenNavigationProp;
 }
 
-const LoginScreen: React.FC<IProps> = ({ navigation }) => {
+const LoginScreen: React.FC<IProps> = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { mutate: login, isPending } = useLogin();
+  // tslint:disable-next-line:typedef
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   // tslint:disable-next-line:typedef
   const handleLogin = () => {
     if (!username || !password) {
-      Alert.alert("Error", "Por favor ingresa email y contraseña");
+      Alert.alert("Error", "Por favor ingresa usuario y contraseña");
       return;
     }
 
@@ -30,6 +33,7 @@ const LoginScreen: React.FC<IProps> = ({ navigation }) => {
           navigation.replace("(tabs)");
         },
         onError: (error) => {
+          console.error("Error en login:", error);
           Alert.alert("Error de autenticación", error.message);
         },
       }
@@ -38,6 +42,7 @@ const LoginScreen: React.FC<IProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container} >
+      <Image source={require("../../assets/images/esas_logo.png")}  />
       <Text style={styles.title}>Iniciar Sesión</Text>
 
       <TextInput
